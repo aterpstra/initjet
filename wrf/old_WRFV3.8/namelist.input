@@ -25,6 +25,7 @@
  io_form_boundary                    = 2,
  iofields_filename                   = "myoutfields.txt",
  debug_level                         = 0,
+ history_outname	 	    		 = "/Data/gfi/spengler/ate093/ideal_SFX/data/wrfout_D6_SFX.nc",
  /
 
  &domains

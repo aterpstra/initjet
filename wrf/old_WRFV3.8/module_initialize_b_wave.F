@@ -304,23 +304,6 @@ CONTAINS
     grid%rdnw(k) = 1./grid%dnw(k)
     grid%znu(k) = 0.5*(grid%znw(k+1)+grid%znw(k))
    ENDDO
-   
-   IF ( config_flags%hybrid_opt .NE. 0 ) THEN
-      call wrf_error_fatal ( '--- ERROR: Hybrid Vertical Coordinate option not supported with this idealized case' )
-   END IF
-   grid%hybrid_opt = 0
-
-   DO k=1, kde
-    grid%c3f(k) = grid%znw(k)
-    grid%c4f(k) = 0.
-    grid%c3h(k) = grid%znu(k)
-    grid%c4h(k) = 0.
-    grid%c1f(k) = 1.
-    grid%c2f(k) = 0.
-    grid%c1h(k) = 1.
-    grid%c2h(k) = 0.
-   ENDDO 
-
    DO k=2, kde-1
     grid%dn(k) = 0.5*(grid%dnw(k)+grid%dnw(k-1))
     grid%rdn(k) = 1./grid%dn(k)
@@ -378,8 +361,8 @@ CONTAINS
   debug = .true.  !  this will produce print of the sounding
   D3_data = .true.
  ! CALL get_sounding( zk, p_in, pd_in, theta, rho_local, u, v, qv, dry_sounding, &
- !                     nl_max, nl_in, u_jet, rho_loc_jet, th_jet, z_jet, rh_jet,    &
- !                     nz_jet, ny_jet, ny_jet/2, debug                   )
+  !                    nl_max, nl_in, u_jet, rho_loc_jet, th_jet, z_jet, rh_jet,    &
+   !                   nz_jet, ny_jet, ny_jet/2, debug                   )
  
   CALL get_sounding( zk, p_in, pd_in, theta, rho_local, u, v, qv, dry_sounding, &
    nl_max, nl_in, u2D, v2D, th2D, rho_loc2D, & 
@@ -447,13 +430,12 @@ CONTAINS
 
   debug = .false.  !  this will turn off print of the sounding
 !  CALL get_sounding( zk, p_in, pd_in, theta, rho_loc, u, v, qv, dry_sounding, &
-!                      nl_max, nl_in, u_jet, rho_loc_jet, th_jet, z_jet, rh_jet,    &
-!                      nz_jet, ny_jet, j, debug                          )
+ !                     nl_max, nl_in, u_jet, rho_loc_jet, th_jet, z_jet, rh_jet,    &
+  !                    nz_jet, ny_jet, j, debug                          )
 
   DO I = its, min(ide-1,ite)
 
 ! IB: get the updated "curtains" from input file for all domain positions:
-  write(6,*) i, shape(v2D), shape(v_jet3D)
   th2D = th_jet3D(:,:,i)
   u2D  = u_jet3D(:,:,i)
   rho_loc2D= rho_loc_jet3D(:,:,i)
@@ -674,28 +656,23 @@ if(add_seaice)then
   !AT: Note that these setting result in a constant skin-temperature both over ocean and sea-ice
   DO J = jts, min(jde-1,jte)
   DO I = its, min(ide-1,ite)  
-     ! Western and eastern 30% is sea ice / middle 40% is open ocean; optional
-     ! triangular-edged shape in the west
-     !if (I.lt.nx_jet*0.3 .or. I.gt.nx_jet*0.7) then
-     !if ( (i - nx_jet*0.3 + abs(j - ny_jet/2)*0.5) .lt. 0.0   & 
-     !   & .or. I.gt.nx_jet*0.7) then
-     if ( (i - nx_jet*0.3 - abs(j - ny_jet/2)*0.5) .lt. 0.0   & 
-        & .or. I.gt.nx_jet*0.7) then
-         !sea-ice (land)
-         grid%xland(i,j)=1   !land
-         grid%xice(i,j)=0.95  !set the fractional-sea-ice
-         grid%sst(i,j)=271.46 !freezing point of salt-water
-         grid%sstsk(i,j)=grid%sst(i,j)
-         grid%tsk(I,J)=255.0  
-         !grid%tsk(I,J)=grid%t_1(1,1,j)+300  !use for non-constant skin-temperature
-         grid%tmn(I,J)=grid%sst(i,j) !bottom of ice= freezing point of salt-water
+    !if(J.lt.ny_jet/2)then !southern part of domain
+      if(I.lt.nx_jet/2)then !western part of domain
+      !sea-ice (land)
+      grid%xland(i,j)=1   !land
+      grid%xice(i,j)=0.7  !set the fractional-sea-ice
+      grid%sst(i,j)=271.46 !freezing point of salt-water
+      grid%sstsk(i,j)=grid%sst(i,j)
+      grid%tsk(I,J)=255.0  
+      !grid%tsk(I,J)=grid%t_1(1,1,j)+300  !use for non-constant skin-temperature
+      grid%tmn(I,J)=grid%sst(i,j) !bottom of ice= freezing point of salt-water
       else
-         !ocean
-         grid%xland(i,j)=2.     !water
-         grid%sst(i,j)=273.0
-         grid%sstsk(i,j)=grid%sst(i,j)
-         grid%tsk(I,J)=grid%sst(I,J)
-         grid%tmn(I,J)=grid%tsk(I,J)-0.5 
+      !ocean
+      grid%xland(i,j)=2.     !water
+      grid%sst(i,j)=273.0
+      grid%sstsk(i,j)=grid%sst(i,j)
+      grid%tsk(I,J)=grid%sst(I,J)
+      grid%tmn(I,J)=grid%tsk(I,J)-0.5 
       endif
   ENDDO
   ENDDO
@@ -850,9 +827,9 @@ endif
 !------------------------------------------------------------------
 
     !subroutine get_sounding( zk, p, p_dry, theta, rho_local,       &
-    !                         u, v, qv, dry, nl_max, nl_in,  &
-    !                         u_jet, rho_loc_jet, th_jet, z_jet, rh_jet, &
-    !                         nz_jet, ny_jet, j_point, debug )
+     !                        u, v, qv, dry, nl_max, nl_in,  &
+      !                       u_jet, rho_loc_jet, th_jet, z_jet, rh_jet, &
+       !                      nz_jet, ny_jet, j_point, debug )
     
      subroutine get_sounding( zk, p, p_dry, theta, rho_local,       &
                              u, v, qv, dry, nl_max, nl_in,  &
@@ -899,9 +876,9 @@ endif
 !                          h_input, th_input, qv_input, u_input, v_input,n, nl, debug )
 
 !   call calc_jet_sounding( p_surf, th_surf, qv_surf,                             &
-!                           h_input, th_input, qv_input, u_input, v_input,        &
-!                           n, nl, debug, u_jet, rho_loc_jet, th_jet, z_jet, rh_jet, j_point, &
-!                           nz_jet, ny_jet, dry                                  )
+ !                          h_input, th_input, qv_input, u_input, v_input,        &
+  !                         n, nl, debug, u_jet, rho_loc_jet, th_jet, z_jet, rh_jet, j_point, &
+   !                        nz_jet, ny_jet, dry                                  )
 
 	call calc_jet_sounding( p_surf, th_surf, qv_surf,                             &
                            h_input, th_input, qv_input, u_input, v_input,        &
@@ -1014,9 +991,9 @@ endif
 !------------------------------------------------------------------
 
   !subroutine calc_jet_sounding( p_surf, th_surf, qv_surf,      &
-  !                              h, th, qv, u, v, n, nl, debug, &
-  !                              u_jet, rho_loc_jet, th_jet, z_jet, rh_jet, &
-  !                              jp, nz_jet, ny_jet, dry       )
+   !                             h, th, qv, u, v, n, nl, debug, &
+    !                            u_jet, rho_loc_jet, th_jet, z_jet, rh_jet, &
+     !                           jp, nz_jet, ny_jet, dry       )
   
   subroutine calc_jet_sounding( p_surf, th_surf, qv_surf,      &
                                 h, th, qv, u, v, n, nl, debug, &
