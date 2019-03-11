@@ -114,7 +114,7 @@ if ( "$opt" == "link" ) then
 
  echo "linking input_jet"
  rm input_jet_3D
- ln -s $jet_dir/fort/input_jet_3D 
+ ln -s $jet_dir/src/input_jet_3D 
  
 else
  echo "nothing happened... add an option: compile, recompile or link "
