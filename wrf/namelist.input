@@ -25,7 +25,6 @@
  io_form_boundary                    = 2,
  iofields_filename                   = "myoutfields.txt",
  debug_level                         = 0,
- history_outname	 	     		 = "/home/annick/Data/wrfout/iwrfout_test.nc",
  /
 
   &domains

@@ -25,9 +25,9 @@
 
 
 #location of WRFV3.6.1
-set wrf_dir="/home/annick/WRF/iWRF/WRFV3"
+set wrf_dir="/cluster/home/annick/iPWRF/WRF-3.9"
 #location of initJET
-set jet_dir="/home/annick/WRF/iWRF/initjet"
+set jet_dir="/cluster/home/annick/iPWRF/initjet"
 
 #----------------------------------------------
 #----------------------------------------------
