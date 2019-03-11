@@ -1,0 +1,76 @@
+##########################
+##						##
+##	initJET 			##
+##						##				
+##########################
+
+
+Author: 	Annick Terpstra
+Year: 		2013	
+Location: 	Geophysical Institute, Bergen, NO
+
+
+--- For questions/suggestions: annick.terpstra@uib.no ---
+
+
+
+Description
+===========
+
+This code generates balanced 2D atmospheric fields for a given windfield in (y,z) coordinates.
+Extension of the 2D fields to 3D and including a perturbation results in initial conditions suitable for idealized numerical simulations for WRF em_b_wave.
+
+Documentation, including code overview, examples, and how to use it in conjunction with WRF, is available in the directory /doc.
+To create and open the documentation (requires Sphinx-installation on your system, see: sphinx-doc.org):
+
+cd doc/
+make html						(also possible to generate .pdf: make latexpdf)
+firefox _build/html/index.html 	(any browser can be used)
+
+Method, functionality and examples can be found in:
+Terpstra, A. and T. Spengler (2015), An initialization method for idealized channel simulations, Monthly Weather Review, doi:10.1175/MWR-D-14-00248.1
+
+Example applications:
+Terpstra, A., T. Spengler and R.W. Moore (2015), Idealized simulations of polar low development in an Arctic moist-baroclinic environment, Quart.J.Roy.Meteo.Soc.,doi:10.1002/qj.2507
+
+
+
+Directory structure
+==================
+
+/src	==> the setup code
+	Makefile 	--> makefile for the setup code
+	namelist.initJET--> namelist for manipulating setup
+	main.f90	--> main program
+	io.f90		--> i/o handeling
+	init.f90	--> initialization 
+	const.f90	--> constants
+	bc.f90		--> boundary conditions
+	func.f90	--> additional functions
+	jet.f90		--> calculation of the jet
+	moist.f90	--> moisture calculations
+	pert.f90	--> calculation of perturbation
+	
+/doc	==> documentation [also available via https://initjet.readthedocs.io/en/latest/index.html]
+	Makefile	--> makefile for the documentation
+	conf.py		--> configuration for sphinx-doc
+	*.rst		--> documentation source files
+
+/wrf	==> WRF add-ons for creating a compatible WRF-setup
+	namelist.input	--> WRF namelist
+	myoutfields.txt	--> WRF quick output variable file
+	module_initialize_b_wave.F	--> modified WRF-initialization file
+    module_sf_sclay.F               --> modified WRF surface layer parameterisation file
+    module_sf_noah_seaice.F         --> modified WRF seaice parameterisation file
+	Registy.EM_COMMON		--> modified WRF-registry file
+
+/plt  ==> some basic scripts to plot the intial conditions
+	plt_jet.ncl	--> analysis of the jet
+	vert_lev.nlc --> plot structure of vertical levels
+
+
+
+other files:
+-----------
+setup_wrf.sh--> 'automatic' linking between initJET and WRF
+init_jet.sh	--> generate initial conditions and plot them
