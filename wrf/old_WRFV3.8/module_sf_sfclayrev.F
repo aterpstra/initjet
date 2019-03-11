@@ -179,6 +179,8 @@ CONTAINS
       REAL,     DIMENSION( ims:ime, jms:jme )                    , &
                 INTENT(INOUT)   ::                                 &
                                                               QGH
+
+
                                     
       REAL,     INTENT(IN   )               ::   CP,G,ROVCP,R,XLV,DX
  
@@ -721,54 +723,11 @@ USE module_configure
               Z0T = MAX(Z0T,2.0e-9)
               Z0Q = Z0T
 
-! following paj:
-           zolzz=zol(I)*(za(I)+z0t)/za(I)    ! (z+z0t)/L
-           zol10=zol(I)*(10.+z0t)/za(I)   ! (10+z0t)/L
-           zol2=zol(I)*(2.+z0t)/za(I)     ! (2+z0t)/L
-           zol0=zol(I)*z0t/za(I)          ! z0t/L
-!
-              if (zol(I).gt.0.) then
-              psih(I)=psih_stable(zolzz)-psih_stable(zol0)
-              psih10(I)=psih_stable(zol10)-psih_stable(zol0)
-              psih2(I)=psih_stable(zol2)-psih_stable(zol0)
-              else
-                if (zol(I).eq.0) then
-                psih(I)=0.
-                psih10(I)=0.
-                psih2(I)=0.
-                else
-                psih(I)=psih_unstable(zolzz)-psih_unstable(zol0)
-                psih10(I)=psih_unstable(zol10)-psih_unstable(zol0)
-                psih2(I)=psih_unstable(zol2)-psih_unstable(zol0)
-                endif
-              endif
-              PSIT=ALOG((ZA(I)+z0t)/Z0t)-PSIH(I)
-              PSIT2=ALOG((2.+z0t)/Z0t)-PSIH2(I)
-
-           zolzz=zol(I)*(za(I)+z0q)/za(I)    ! (z+z0q)/L
-           zol10=zol(I)*(10.+z0q)/za(I)   ! (10+z0q)/L
-           zol2=zol(I)*(2.+z0q)/za(I)     ! (2+z0q)/L
-           zol0=zol(I)*z0q/za(I)          ! z0q/L
-!
-              if (zol(I).gt.0.) then
-              psih(I)=psih_stable(zolzz)-psih_stable(zol0)
-              psih10(I)=psih_stable(zol10)-psih_stable(zol0)
-              psih2(I)=psih_stable(zol2)-psih_stable(zol0)
-              else
-                if (zol(I).eq.0) then
-                psih(I)=0.
-                psih10(I)=0.
-                psih2(I)=0.
-                else
-                psih(I)=psih_unstable(zolzz)-psih_unstable(zol0)
-                psih10(I)=psih_unstable(zol10)-psih_unstable(zol0)
-                psih2(I)=psih_unstable(zol2)-psih_unstable(zol0)
-                endif
-              endif
-!
-              PSIQ=ALOG((ZA(I)+z0q)/Z0q)-PSIH(I)
-              PSIQ2=ALOG((2.+z0q)/Z0q)-PSIH2(I)
-              PSIQ10=ALOG((10.+z0q)/Z0q)-PSIH10(I)
+              PSIQ=max(ALOG((ZA(I)+Z0Q)/Z0Q)-PSIH(I), 2.)
+              PSIT=max(ALOG((ZA(I)+Z0T)/Z0T)-PSIH(I), 2.)
+              PSIQ2=max(ALOG((2.+Z0Q)/Z0Q)-PSIH2(I), 2.)
+              PSIT2=max(ALOG((2.+Z0T)/Z0T)-PSIH2(I), 2.)
+              PSIQ10=max(ALOG((10.+Z0Q)/Z0Q)-PSIH10(I), 2.)
         ENDIF
 
         IF ( PRESENT(ISFTCFLX) ) THEN
@@ -981,8 +940,6 @@ USE module_configure
 !         ZNT(I)=CZO*UST(I)*UST(I)/G+OZO                                   
 ! Since V3.7 (ref: EC Physics document for Cy36r1)
           ZNT(I)=CZO*UST(I)*UST(I)/G+0.11*1.5E-5/UST(I)
-! V3.9: Add limit as in isftcflx = 1,2
-          ZNT(I)=MIN(ZNT(I),2.85e-3)
 ! COARE 3.5 (Edson et al. 2013)
 !         CZC = 0.0017*WSPD(I)-0.005
 !         CZC = min(CZC,0.028)
@@ -1026,7 +983,8 @@ USE module_configure
 !-----COMPUTE SURFACE MOIST FLUX:                                                
 !                                                                                
 !     IF(IDRY.EQ.1)GOTO 390                                                
-!                                                                                
+!                  
+
      IF ( PRESENT(SCM_FORCE_FLUX) ) THEN
         IF (SCM_FORCE_FLUX.EQ.1) GOTO 405
      ENDIF
@@ -1037,7 +995,9 @@ USE module_configure
         QFX(I)=AMAX1(QFX(I),0.)                                            
         LH(I)=XLV*QFX(I)
   370 CONTINUE                                                                 
-                                                                                
+        
+
+
 !-----COMPUTE SURFACE HEAT FLUX:                                                 
 !                                                                                
   390 CONTINUE                                                                 
@@ -1054,7 +1014,8 @@ USE module_configure
         ELSEIF(XLAND(I)-1.5.LT.0.)THEN                                       
           HFX(I)=alpha_sens*FLHC(I)*(THGB(I)-THX(I))                                
           HFX(I)=AMAX1(HFX(I),-250.)                                       
-        ENDIF                                                                  
+        ENDIF       
+                                                          
   400 CONTINUE                                                                 
 
   405 CONTINUE                                                                 
