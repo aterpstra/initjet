@@ -1,0 +1,74 @@
+!----------------------------------------------------
+!  Namelist file for the initialization program
+!
+!	For more info see the README and doc
+!----------------------------------------------------
+
+
+
+&prog
+ debug=.true.,
+ wrf_file=.true.,
+ nc_file=.true.
+/
+
+&domain
+ nx=51,
+ ny=51,
+ nz=51,
+ Lx=2.5d6,
+ Ly=2.5d6,
+ Lz=2.5d4,
+ f=1.36d-4
+ beta=0.!1.e-11
+/
+
+
+&jet
+ U_type=2,
+
+ U_max=20.d0,
+ U_hgt=6.d3,
+ U_width=2.0d6,
+ U_top=1.8d4,
+ U_bottom=-2.0d3,
+
+ S_tr=1.5d0,
+ S_st=2.d0,
+/
+
+&sst
+  sst_type=1
+  sst_diff=5.,
+  sst_scale=1.,
+/
+
+&stab
+ bc_type=0,
+ p0=1.013d5,
+ th0=275.d0,
+ tropo_hgt=6.d3,
+ N2_tr=0.01d0,
+ N2_st=0.02d0,
+/
+
+&moist
+ add_moist=.true.,
+ RH_type=2,
+ RH_max=0.8d0,
+ RH_min=0.1d0,
+ RH_hgt=5.d3,
+ RH_shape=3.d0
+/
+
+&pert
+ add_pert=.true.,
+ P_type=2,
+ P_sfc=.true.,
+ P_rad=2.d5,
+ P_z=2.0d3,
+ P_n=2.0d0,
+ P_amp=1.d0,
+ P_nx=21,
+ P_ny=21
+/
