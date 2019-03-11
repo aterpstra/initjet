@@ -2,7 +2,7 @@
 
 dir=$PWD
 
-cd $dir/fort
+cd $dir/src
 
 make
 
