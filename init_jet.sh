@@ -8,6 +8,6 @@ make
 
 cd $dir/
 
-ncl plt/plt_jet.ncl
-ncl plt/wrfinput_vs_initjet.ncl
+#ncl plt/plt_jet.ncl
+#ncl plt/wrfinput_vs_initjet.ncl
 
