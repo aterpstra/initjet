@@ -25,9 +25,9 @@
 
 
 #location of WRFV3.6.1
-set wrf_dir="/cluster/home/annick/iPWRF/WRF-3.9"
+set wrf_dir="/home/annick/WRF/iWRF/WRF-3.9"
 #location of initJET
-set jet_dir="/cluster/home/annick/iPWRF/initjet"
+set jet_dir="/home/annick/WRF/iWRF/initjet"
 
 #----------------------------------------------
 #----------------------------------------------
@@ -112,7 +112,7 @@ if ( "$opt" == "link" ) then
  rm myoutfields.txt
  ln -s $jet_dir/wrf/myoutfields.txt 
 
- echo "linking input_jet"
+ echo "linking input_jet_3D"
  rm input_jet_3D
  ln -s $jet_dir/src/input_jet_3D 
  

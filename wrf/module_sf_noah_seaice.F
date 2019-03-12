@@ -1,5 +1,4 @@
 MODULE module_sf_noah_seaice
-#define BPRC_MODS
   USE module_model_constants, only : CP, R_D, XLF, XLV, RHOWATER, STBOLT
   use module_sf_noahlsm, only : RD, SIGMA, CPH2O, CPICE, LSUBF, EMISSI_S, &
        &                        HSTEP
@@ -285,10 +284,6 @@ CONTAINS
          CALL wrf_error_fatal ( 'Physical snow depth is less than snow water equiv.' )
       ENDIF
       CALL CSNOW (SNCOND,SNDENS)
-#ifdef BPRC_MODS
-! snow conductivity over sea ice from Persson (2012, Clim. Dyn., 39, 1349-1371) and Sturm, Perovich and Holmgren (2002, JGR, 107(C21), 8043)
-      SNCOND = 0.3
-#endif
 
 ! ----------------------------------------------------------------------
 ! DETERMINE IF IT'S PRECIPITATING AND WHAT KIND OF PRECIP IT IS.
@@ -337,10 +332,6 @@ CONTAINS
          ENDIF
 
          CALL CSNOW (SNCOND,SNDENS)
-#ifdef BPRC_MODS
-! snow conductivity over sea ice from Persson (2012, Clim. Dyn., 39, 1349-1371) and Sturm, Perovich and Holmgren (2002, JGR, 107(C21), 8043)
-      SNCOND = 0.3
-#endif
 
       END IF
 
@@ -475,15 +466,15 @@ CONTAINS
 !BYEBYE for the SNOPAC() subroutine, so long, farewell! 
 
       ESNOW = 0.0
-!      CALL SNOPAC (ETP,ETA,PRCP,SNOWNG,                    &
-!           NSOIL,DT,DF1,                                   &
-!           Q2,T1,SFCTMP,T24,TH2,FDOWN,SSOIL,STC,           &
-!           SFCPRS,RCH,RR,SNCOVR,SNEQV,SNDENS,              &
-!           SNOWH,ZSOIL,TBOT,                               &
-!           SNOMLT,DEW,FLX1,FLX2,FLX3,ESNOW,EMISSI,RIBB,    &
-!           SEAICE_ALBEDO_OPT)
-!     ETA_KINEMATIC =  ESNOW
-      ETA_KINEMATIC =  ETP
+ !     CALL SNOPAC (ETP,ETA,PRCP,SNOWNG,                    &
+  !         NSOIL,DT,DF1,                                   &
+   !        Q2,T1,SFCTMP,T24,TH2,FDOWN,SSOIL,STC,           &
+    !       SFCPRS,RCH,RR,SNCOVR,SNEQV,SNDENS,              &
+     !      SNOWH,ZSOIL,TBOT,                               &
+      !     SNOMLT,DEW,FLX1,FLX2,FLX3,ESNOW,EMISSI,RIBB,    &
+       !    SEAICE_ALBEDO_OPT)
+      ETA_KINEMATIC =  ESNOW
+	ETA_KINEMATIC =  ETP
 
       IF ( SEAICE_SNOWDEPTH_OPT == 0 ) THEN
 
