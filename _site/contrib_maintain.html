@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Information regarding maintainability">
+<meta name="keywords" content=" ">
+<title>Maintainability | MetOcean WRF Documentation</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="wrf-docs" href="http://localhost:4000/feed.xml">
+
+
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> MetOcean WRF Documentation</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="news">News</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">WRF Documentation<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="p2_landing_page.html">WRF configuration</a></li>
+                        
+                        
+                        
+                        <li><a href="wrfwrap_overview.html">WRF wrapper</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support Documentation<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="contrib_overview.html">Contribute</a></li>
+                        
+                        
+                        
+                        <li><a href="mydoc_introduction.html">Jekyll Documentation Theme</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="Maintainability">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Contribute </li>
+  
+  
+  
+  <li>
+      <a title="Introduction" href="#">Introduction</a>
+      <ul>
+          
+          
+          
+          <li><a title="Overview" href="contrib_overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Contribute to MOS WRF modelling" href="contrib_contribute.html">Contribute to MOS WRF modelling</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="MetOcean operational system" href="#">MetOcean operational system</a>
+      <ul>
+          
+          
+          
+          <li><a title="Basic structure" href="contrib_ops_structure.html">Basic structure</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="MOS Scheduler" href="contrib_scheduler.html">MOS Scheduler</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Software Development" href="#">Software Development</a>
+      <ul>
+          
+          
+          
+          <li><a title="Documentation" href="contrib_documentation.html">Documentation</a></li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a title="Maintainability" href="contrib_maintain.html">Maintainability</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Standardisation" href="contrib_standard.html">Standardisation</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Tools" href="#">Tools</a>
+      <ul>
+          
+          
+          
+          <li><a title="Python" href="contrib_python.html">Python</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Git" href="contrib_git.html">Git</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Docker" href="contrib_docker.html">Docker</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Maintainability</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary">Information regarding maintainability</div>
+   
+
+    
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+
+
+    
+
+
+    
+
+   <figure><img class="docimage" src="images/code_quality.png" alt="" /><figcaption>Source: https://imgs.xkcd.com/comics/code_quality.png</figcaption></figure>
+
+<h2 id="aspired-maintainability-level">Aspired maintainability level</h2>
+
+<ul>
+  <li>
+    <p>It’s easy for the team to find examples in the codebase, reuse other people’s code, and change code maintained by other teams if necessary.</p>
+  </li>
+  <li>
+    <p>It’s easy for the team to add new dependencies to their project, and to migrate to a new version of a dependency.</p>
+  </li>
+  <li>
+    <p>The team’s dependencies are stable and rarely break the code.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Code maintainability drives higher software delivery and organizational performance. 
+  Maintenance costs scale with code maintainability. 
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="improve-maintainability">Improve maintainability</h2>
+
+<ul>
+  <li>follow a clean and consistent coding standard by enforcing style guides</li>
+  <li>use human readable and sensible names</li>
+  <li>be clear and concise, write readable code</li>
+  <li>minimize complex conditional and nested logic</li>
+  <li>limit inter-dependability and coupling</li>
+  <li>methods should be small and singularly focused</li>
+  <li>classes should be focussed</li>
+  <li>minimize redundancy</li>
+  <li>remove unused code</li>
+  <li>comments should add value</li>
+  <li>clearly track dependancies</li>
+  <li>create API and documentation</li>
+  <li>create testable code and tests</li>
+  <li>separate configuration from source</li>
+</ul>
+
+<h2 id="assess-maintainability">Assess maintainability</h2>
+
+<ul>
+  <li>determine bug density</li>
+  <li>quantify unused, redundant, and/or untested code</li>
+  <li>access size of files, method length and nesting depth</li>
+  <li>access comment completeness and quality</li>
+  <li>access naming conventions and quality</li>
+  <li>quantify traceability and reproducability</li>
+</ul>
+
+<h2 id="style-guides">Style guides</h2>
+
+<ul>
+  <li><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Docker</a></li>
+  <li><a href="https://www.python.org/dev/peps/pep-0008/">Python</a></li>
+</ul>
+
+<h2 id="usefull-tools">Usefull tools</h2>
+
+<ul>
+  <li>pep8</li>
+  <li>autopep8</li>
+  <li>pyflakes</li>
+  <li>pylint</li>
+  <li>flake8</li>
+</ul>
+
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+
+
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2022 MetOcean Solutions. All rights reserved. <br />
+ Site last generated: Jan 19, 2022 <br />
+<p><img src="images/company_logo.png" alt="Company logo"/></p>
+                </div>
+            </div>
+</footer>
+
+
+
+
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>
+
+

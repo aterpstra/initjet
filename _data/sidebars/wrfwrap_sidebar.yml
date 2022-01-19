@@ -1,0 +1,105 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+
+entries:
+- title: WRF wrapper
+  product: wrf-wrap
+  version: 1.0.0
+  folders:
+
+  #- title:
+  #  output: pdf
+  #  type: frontmatter
+  #  folderitems:
+  #  - title:
+  #    url: /titlepage.html
+  #    output: pdf
+  #    type: frontmatter
+  #  - title:
+  #    url: /tocpage.html
+  #    output: pdf
+  #    type: frontmatter
+
+  - title: Introduction
+    output: web, pdf
+    folderitems:
+      
+    - title: Overview
+      url: /wrfwrap_overview.html
+      output: web, pdf
+
+    - title: Installation
+      url: /wrfwrap_install.html
+      output: web, pdf
+
+    - title: Functionality
+      url: /wrfwrap_functionality.html
+      output: web, pdf
+
+  - title: Usage
+    output: web, pdf
+    folderitems:
+
+    - title: Run wrf-wrap using python
+      url: /wrfwrap_use_python.html
+      output: web, pdf
+
+    - title: Run wrf-wrap using scheduler
+      url: /wrfwrap_use_scheduler.html
+      output: web, pdf
+
+    - title: WRF wrapper actions
+      url: /wrfwrap_actions.html
+      output: web, pdf 
+
+  - title: Contribute
+    output: web, pdf
+    folderitems:
+
+    - title: Development
+      url: /wrfwrap_develop.html
+      output: web, pdf
+
+    #- title: Documentation
+    #  url: /wrfwrap_docs.html
+    #  output: web, pdf 
+
+    - title: Testing and CI/CD
+      url: /wrfwrap_test.html
+      output: web, pdf
+
+
+  #- title: WRF wrapper API
+  #  output: web, pdf
+  #  folderitems:
+
+  #  - title: wrf_wrap
+  #    url: /wrfwrap_api_home.html
+  #    output: web, pdf
+
+
+  #  - title: tests
+  #    url: /wrfwrap_api_tests.html
+  #    output: web, pdf
+
+  #- title: Another heading
+  #  output: web, pdf
+
+  #  folderitems:
+  #  - title: Sample 4
+  #    url: /p1_sample4.html
+  #    output: web, pdf
+
+  #  - title: Sample 5
+  #    url: /p1_sample5.html
+  #    output: web, pdf
+
+  #  - title: Sample 6
+  #    url: /p1_sample6.html
+  #    output: web, pdf
+
+  #  - title: Sample 7
+  #    url: /p1_sample7.html
+  #    output: web, pdf
+
+# Copyright 2021 Google LLC

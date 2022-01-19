@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The 'scheduler' orchestates a bunch of containers comprising the operational system. This page contains information about basic usage of the 'scheduler', eit...">
+<meta name="keywords" content=" ">
+<title>MetOcean scheduler | MetOcean WRF Documentation</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="wrf-docs" href="http://localhost:4000/feed.xml">
+
+
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> MetOcean WRF Documentation</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="news">News</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">WRF Documentation<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="p2_landing_page.html">WRF configuration</a></li>
+                        
+                        
+                        
+                        <li><a href="wrfwrap_overview.html">WRF wrapper</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support Documentation<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="contrib_overview.html">Contribute</a></li>
+                        
+                        
+                        
+                        <li><a href="mydoc_introduction.html">Jekyll Documentation Theme</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="MetOcean scheduler">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Contribute </li>
+  
+  
+  
+  <li>
+      <a title="Introduction" href="#">Introduction</a>
+      <ul>
+          
+          
+          
+          <li><a title="Overview" href="contrib_overview.html">Overview</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Contribute to MOS WRF modelling" href="contrib_contribute.html">Contribute to MOS WRF modelling</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="MetOcean operational system" href="#">MetOcean operational system</a>
+      <ul>
+          
+          
+          
+          <li><a title="Basic structure" href="contrib_ops_structure.html">Basic structure</a></li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a title="MOS Scheduler" href="contrib_scheduler.html">MOS Scheduler</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Software Development" href="#">Software Development</a>
+      <ul>
+          
+          
+          
+          <li><a title="Documentation" href="contrib_documentation.html">Documentation</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Maintainability" href="contrib_maintain.html">Maintainability</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Standardisation" href="contrib_standard.html">Standardisation</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Tools" href="#">Tools</a>
+      <ul>
+          
+          
+          
+          <li><a title="Python" href="contrib_python.html">Python</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Git" href="contrib_git.html">Git</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="Docker" href="contrib_docker.html">Docker</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">MetOcean scheduler</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary">The 'scheduler' orchestates a bunch of containers comprising the operational system. This page contains information about basic usage of the 'scheduler', either locally, at the test-server, or in the operational environment</div>
+   
+
+    
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+
+
+    
+
+
+    
+
+   <p><i class="fa fa-github fa-2x" aria-hidden="true"></i> <a href="https://github.com/metocean/scheduler">GitHub repository for scheduler</a></p>
+
+<p><i class="fa fa-book fa-2x" aria-hidden="true"></i> <a href="https://scheduler.metocean.co.nz/docs/index.html">Documentation for scheduler</a></p>
+
+<h2 id="install-locally">Install locally</h2>
+
+<p>Clone the repository</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone --recursive git@github.com:metocean/scheduler
+</code></pre></div></div>
+
+<p>Run scheduler</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd scheduler
+docker-compose up -d
+</code></pre></div></div>
+
+<p>Setup test actions and workflows for user</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir scheduler/config/my-actions
+mkdir scheduler/config/my-workflows
+</code></pre></div></div>
+
+<p>Config local-settings for scheduler: add content to scheduler/config/local-settings.py</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXTRA_QUEUES = ['custom']
+ACTIONS_DIR = '/source/scheduler/config/my-actions'
+WORKFLOWS_DIR = '/source/scheduler/config/my-workflows'
+
+DOCKER_LOGIN = {
+    'username' : '*****',
+    'password' : '*****',
+    'email'    : '*****',
+    'registry' : 'https://index.docker.io/v1/'
+	}
+</code></pre></div></div>
+
+<p>Restart scheduler</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose restart head flower node direct
+</code></pre></div></div>
+
+<p>Access to User Interface:</p>
+<ul>
+  <li>Flower : <a href="http://localhost:5555">http://localhost:5555</a></li>
+  <li>RabbitMQ : <a href="http://localhost:15672">http://localhost:15672</a></li>
+  <li>Consul : <a href="http://localhost:8555">http://localhost:8555</a></li>
+  <li>Docs : <a href="http://localhost:5556">http://localhost:5556</a></li>
+</ul>
+
+<p>Destroy all running tasks and containers and generate new scheduler instance</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash scheduler/flush.sh
+</code></pre></div></div>
+
+<p>Set allias (preferably in: ~/.bashrc)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sched='docker-compose exec volumes scheduler'
+</code></pre></div></div>
+
+<h2 id="run-an-action">Run an action</h2>
+
+<p>For example, download GFS data (see also: Scheduler Documentation, http://localhost:5556):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sched run -c 20211105_00z down.gfs_global_025 (without .yaml extention)
+</code></pre></div></div>
+
+<p>The corresponding action should be placed in /source/scheduler/config/my-actions/down.gfs_global_025.yaml, and looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Download GFS operational forecasts (NCEP), resolution: 0.25deg
+
+pycallable: msl_actions.download.ncep.NCEPDownloadAction
+title: GFS 0.25 %Y%m%d_%Hz
+hosts: ['https://nomads.ncep.noaa.gov/','ftp://ftp.ncep.noaa.gov']
+local_dir: '/data/gfs/global_025/gfs_%Y%m%d/'
+remote_dir: 'pub/data/nccf/com/gfs/prod/gfs.%Y%m%d/%H/atmos'
+basefile: 'gfs.t%Hz.pgrb2.0p25.f%03i'
+horizon: [0,13,3] #in hours, add extra hour for pythonic reasons
+transform_on_download: False
+
+schedule:
+    docker:
+       image: metocean/ops-base:ops-base-v2.7.1 #image with NCEPDownloadAction installed
+    allocate:           4
+    memleak_threshold:  6000 #20Gb, action is terminated when task reaches memory limit
+    priority:           1
+    hourly_cycles:      [0, 6, 12, 18] #which cycles to run
+    countdown:          5h00m #duration to start action after 'cycle-time'
+    soft_time_limit:    45m #duration to terminate action after action-start
+    expires:            12h #duration of expiry of action after 'cycle-time'
+</code></pre></div></div>
+
+<h2 id="testing">Testing</h2>
+
+<p>A test-server emulating the operational system is available at metocean@katipo1.metocean.co.nz.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh metocean@katipo1
+</code></pre></div></div>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>The repository for testing is <a href="https://github.com/metocean/ops-testing">metocean/ops-testing</a>. After a pull on katipo1 the config is automatically updated, no need to restart the scheduler.</p>
+
+<p>Actions for testing are located in /config/testing/scheduler/actions/ on metocean@katipo1 and /ops-testing/scheduler/actions/ in the ops-testing repository.</p>
+
+<p>Monitor scheduler activity on the testing server (VPN required): <a href="http://flower.scheduler-testing.service.consul:5555">http://flower.scheduler-testing.service.consul:5555</a></p>
+
+<h3 id="submit-a-cyclic-workflow">Submit a (cyclic) workflow</h3>
+
+<ol>
+  <li>
+    <p>Add new actions to /config/testing/scheduler/actions/&lt;my_action.yaml&gt;</p>
+  </li>
+  <li>
+    <p>Add a workflow to /config/testing/scheduler/workflows/&lt;my_workflow.yaml&gt; with all the involved actions as a bullet-list, i.e:</p>
+
+    <ul>
+      <li>down.ncep.awips.sst_0083</li>
+      <li>down.ncep.gfs.fcst_025</li>
+      <li>model.wrf.tiny-gfs025-default</li>
+    </ul>
+  </li>
+  <li>
+    <p>Add the workflow to SCHEDULER_ACTIVE_WORKFLOWS in /config/testing/scheduler/.env</p>
+
+    <p>SCHEDULER_ACTIVE_WORKFLOWS=default, my_workflow</p>
+  </li>
+  <li>
+    <p>Restart the beat:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker-compose restart beat
+
+ #or more aggressive version:
+ dc up -d --force-recreate beat
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="operational">Operational</h2>
+
+<p>Operational system login is available via metocean@pata5.metocean.co.nz</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh metocean@pata5
+</code></pre></div></div>
+
+<h3 id="configuration-1">Configuration</h3>
+
+<p>The repository with the configuration of the operational system is <a href="https://github.com/metocean/ops">metocean/ops</a>. A single <a href="https://github.com/metocean/ops/blob/master/scheduler/workflows/workflow.yaml">workflow</a> defines the current operational setup, with default operational settings for the scheduler in <a href="https://github.com/metocean/ops/blob/master/scheduler/.env">/ops/scheduler/.env</a>.</p>
+
+<p>Actions are located in /ops/scheduler/actions in the repository and in /config/ops/scheduler/actions on metocean@pata5.</p>
+
+<p>Monitor scheduler activity on the operational server: <a href="https://scheduler.metocean.co.nz/">https://scheduler.metocean.co.nz/</a></p>
+
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+
+
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2022 MetOcean Solutions. All rights reserved. <br />
+ Site last generated: Jan 19, 2022 <br />
+<p><img src="images/company_logo.png" alt="Company logo"/></p>
+                </div>
+            </div>
+</footer>
+
+
+
+
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>
+
+

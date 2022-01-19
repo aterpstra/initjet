@@ -1,0 +1,87 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+
+entries:
+- title: Contribute
+  product: Contribute
+  #version: 1.0.0
+  folders:
+
+  #- title:
+  #  output: pdf
+  #  type: frontmatter
+  #  folderitems:
+  #  - title:
+  #    url: /titlepage.html
+  #    output: pdf
+  #    type: frontmatter
+  #  - title:
+  #    url: /tocpage.html
+  #    output: pdf
+  #    type: frontmatter
+
+  - title: Introduction
+    output: web, pdf
+    folderitems:
+      
+    - title: Overview
+      url: /contrib_overview.html
+      output: web, pdf
+
+    - title: Contribute to MOS WRF modelling
+      url: /contrib_contribute.html
+      output: web, pdf
+
+  
+
+  - title: MetOcean operational system
+    output: web, pdf
+    folderitems:
+
+    - title: Basic structure
+      url: /contrib_ops_structure.html
+      output: web, pdf
+
+    - title: MOS Scheduler
+      url: /contrib_scheduler.html
+      output: web, pdf
+
+  - title: Software Development
+    output: web, pdf
+    folderitems:
+
+    - title: Documentation
+      url: /contrib_documentation.html
+      output: web, pdf
+
+    - title: Maintainability
+      url: /contrib_maintain.html
+      output: web, pdf
+
+    - title: Standardisation
+      url: /contrib_standard.html
+      output: web, pdf
+
+
+  - title: Tools 
+    output: web, pdf
+    folderitems:
+
+    - title: Python
+      url: /contrib_python.html
+      output: web, pdf
+
+    - title: Git
+      url: /contrib_git.html
+      output: web, pdf
+
+    - title: Docker
+      url: /contrib_docker.html
+      output: web, pdf
+
+
+  #  - title: Sample 7
+  #    url: /p1_sample7.html
+  #    output: web, pdf
+
+# Copyright 2021 Google LLC
