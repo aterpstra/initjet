@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wrf_wrap package &mdash; wrf-wrap v1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="tests package" href="tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> wrf-wrap
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">wrf_wrap package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wrf_wrap.base">wrf_wrap.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wrf_wrap.checks">wrf_wrap.checks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wrf_wrap.fcst_wrapper">wrf_wrap.fcst_wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wrf_wrap.namelist">wrf_wrap.namelist module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wrf_wrap.utils">wrf_wrap.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wrf_wrap.wrapper">wrf_wrap.wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-wrf_wrap">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">wrf-wrap</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>wrf_wrap package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/wrf_wrap.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="wrf-wrap-package">
+<h1>wrf_wrap package<a class="headerlink" href="#wrf-wrap-package" title="Permalink to this headline"></a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="module-wrf_wrap.base">
+<span id="wrf-wrap-base-module"></span><h2>wrf_wrap.base module<a class="headerlink" href="#module-wrf_wrap.base" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wrf_wrap.base.</span></span><span class="sig-name descname"><span class="pre">WRFbase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cleanup=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_raw=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_workdir=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_dt=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipe=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger=&lt;module</span> <span class="pre">'logging'</span> <span class="pre">from</span> <span class="pre">'/home/aterpstra/anaconda3/envs/wrf-wrap-dev/lib/python3.9/logging/__init__.py'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mpiexec='mpirun'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for housekeeping during WRF modelling, i.e. copy-to-scratch, upload-final-files, parse-logs,
+collect-config-files, etc. Running of WRF including pre- and post-processing is implemented in
+child-classes that overwriete the method “process”</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.cleanup" title="wrf_wrap.base.WRFbase.cleanup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cleanup</span></code></a>()</p></td>
+<td><p>Remove work-directory</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.post_mortem_upload" title="wrf_wrap.base.WRFbase.post_mortem_upload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">post_mortem_upload</span></code></a>()</p></td>
+<td><p>Upload content of work-directory to flush-directory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.report_progress" title="wrf_wrap.base.WRFbase.report_progress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">report_progress</span></code></a>(partial, total, status)</p></td>
+<td><p>Report model progress and status to scheduler</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.run" title="wrf_wrap.base.WRFbase.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
+<td><p>Run the model-components</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.set_cycle" title="wrf_wrap.base.WRFbase.set_cycle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_cycle</span></code></a>(cycle_dt)</p></td>
+<td><p>Define which cycle to run</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.set_mpiexec" title="wrf_wrap.base.WRFbase.set_mpiexec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_mpiexec</span></code></a>([ncores, hosts])</p></td>
+<td><p>Setup mpi command</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.setup_workdir" title="wrf_wrap.base.WRFbase.setup_workdir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_workdir</span></code></a>()</p></td>
+<td><p>Setup work-directory</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.setup_workenv" title="wrf_wrap.base.WRFbase.setup_workenv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_workenv</span></code></a>()</p></td>
+<td><p>Setup work-environment</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.upload" title="wrf_wrap.base.WRFbase.upload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">upload</span></code></a>()</p></td>
+<td><p>Upload output files to final destination.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.base.WRFbase.upload_logfiles" title="wrf_wrap.base.WRFbase.upload_logfiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">upload_logfiles</span></code></a>(files_list, suffix)</p></td>
+<td><p>Upload log files to log-directory.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 48%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>process</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.cleanup">
+<span class="sig-name descname"><span class="pre">cleanup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.cleanup" title="Permalink to this definition"></a></dt>
+<dd><p>Remove work-directory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.post_mortem_upload">
+<span class="sig-name descname"><span class="pre">post_mortem_upload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.post_mortem_upload" title="Permalink to this definition"></a></dt>
+<dd><p>Upload content of work-directory to flush-directory.</p>
+<p>[More sensible: only save modified config and log-files??]</p>
+<p>Called when-ever an error occurs in wrf-wrap.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.process" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.report_progress">
+<span class="sig-name descname"><span class="pre">report_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.report_progress" title="Permalink to this definition"></a></dt>
+<dd><p>Report model progress and status to scheduler</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>partial</strong><span class="classifier">int</span></dt><dd><p>partial progress of total</p>
+</dd>
+<dt><strong>total</strong><span class="classifier">int</span></dt><dd><p>total work to do</p>
+</dd>
+<dt><strong>status</strong><span class="classifier">str</span></dt><dd><p>message indicating the state-of-progress, i.e ‘running model’</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.run" title="Permalink to this definition"></a></dt>
+<dd><p>Run the model-components</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.set_cycle">
+<span class="sig-name descname"><span class="pre">set_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycle_dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.set_cycle" title="Permalink to this definition"></a></dt>
+<dd><p>Define which cycle to run</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.set_mpiexec">
+<span class="sig-name descname"><span class="pre">set_mpiexec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ncores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hosts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.set_mpiexec" title="Permalink to this definition"></a></dt>
+<dd><p>Setup mpi command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.setup_workdir">
+<span class="sig-name descname"><span class="pre">setup_workdir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.setup_workdir" title="Permalink to this definition"></a></dt>
+<dd><p>Setup work-directory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.setup_workenv">
+<span class="sig-name descname"><span class="pre">setup_workenv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.setup_workenv" title="Permalink to this definition"></a></dt>
+<dd><p>Setup work-environment</p>
+<p>Setup the directory pointers for simulation id,
+create a work directory and add config files.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.upload">
+<span class="sig-name descname"><span class="pre">upload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.upload" title="Permalink to this definition"></a></dt>
+<dd><p>Upload output files to final destination.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.base.WRFbase.upload_logfiles">
+<span class="sig-name descname"><span class="pre">upload_logfiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.base.WRFbase.upload_logfiles" title="Permalink to this definition"></a></dt>
+<dd><p>Upload log files to log-directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>files_list</strong><span class="classifier">list</span></dt><dd><p>list of log-files to upload</p>
+</dd>
+<dt><strong>prefix</strong><span class="classifier">str</span></dt><dd><p>identifier for log-files</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-wrf_wrap.checks">
+<span id="wrf-wrap-checks-module"></span><h2>wrf_wrap.checks module<a class="headerlink" href="#module-wrf_wrap.checks" title="Permalink to this headline"></a></h2>
+<p>Module with checks for wrf-wrap</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.checks.check_requirements_preprocess">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.checks.</span></span><span class="sig-name descname"><span class="pre">check_requirements_preprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.checks.check_requirements_preprocess" title="Permalink to this definition"></a></dt>
+<dd><p>Check requirements for preprocessing</p>
+<p>Includes checking: config-files, executables, static-files</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Input data is checked separately</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.checks.check_requirements_runwrf">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.checks.</span></span><span class="sig-name descname"><span class="pre">check_requirements_runwrf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.checks.check_requirements_runwrf" title="Permalink to this definition"></a></dt>
+<dd><p>Check basic requirements for running wrf</p>
+<p>Includes checking: config-files, executables, met_em_d0x input-files for WRF</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.checks.check_requirements_wrfbase">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.checks.</span></span><span class="sig-name descname"><span class="pre">check_requirements_wrfbase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.checks.check_requirements_wrfbase" title="Permalink to this definition"></a></dt>
+<dd><p>Check minimum requirements for using WRFbase class</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.checks.check_subset_available">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.checks.</span></span><span class="sig-name descname"><span class="pre">check_subset_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vtable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.checks.check_subset_available" title="Permalink to this definition"></a></dt>
+<dd><p>check if subsetting is available for dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vtable</strong><span class="classifier">str</span></dt><dd><p>name of Vtable</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>bool</dt><dd><p>True if available</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.checks.check_success">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.checks.</span></span><span class="sig-name descname"><span class="pre">check_success</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.checks.check_success" title="Permalink to this definition"></a></dt>
+<dd><p>Check logfile for successfull execution of process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>log_file</strong><span class="classifier">str</span></dt><dd><p>log-file location</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>bool</dt><dd><p>True if succesfull</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-wrf_wrap.fcst_wrapper">
+<span id="wrf-wrap-fcst-wrapper-module"></span><h2>wrf_wrap.fcst_wrapper module<a class="headerlink" href="#module-wrf_wrap.fcst_wrapper" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="wrf_wrap.fcst_wrapper.forecastWRFwrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wrf_wrap.fcst_wrapper.</span></span><span class="sig-name descname"><span class="pre">forecastWRFwrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.fcst_wrapper.forecastWRFwrapper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper" title="wrf_wrap.wrapper.WRFwrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">wrf_wrap.wrapper.WRFwrapper</span></code></a></p>
+<p>Class to run WRF modelling components in forecast mode.</p>
+<p>Deviation from default WRFwrapper primarily involve forcing-data.</p>
+<p>Forecast-mode modification include:
+- using hot-start files
+-</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_result</span></code>(logfile, exec_id)</p></td>
+<td><p>Check for succesfull completion of process</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cleanup</span></code>()</p></td>
+<td><p>Remove work-directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fetch_data_subset</span></code>(data_set)</p></td>
+<td><p>Fetch data subset only.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_input_data_filelist</span></code>()</p></td>
+<td><p>Find file-lists for all requested input-data</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_wrf_progress</span></code>(line)</p></td>
+<td><p>Determine WRF-progress</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_wrf</span></code>()</p></td>
+<td><p>Initialise WRF-model simulation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mod_namelist_metgrid</span></code>()</p></td>
+<td><p>Modify namelist.wps for metgrid</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">mod_namelist_ungrib</span></code>(data_set)</p></td>
+<td><p>Modify namelist.wps for ungrib.exe for data_set</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">post_mortem_upload</span></code>()</p></td>
+<td><p>Upload content of work-directory to flush-directory.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">post_process</span></code>()</p></td>
+<td><p>Run post-processing on WRF-output files</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pre_process</span></code>()</p></td>
+<td><p>Pre-process input data for WRF-modelling</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.fcst_wrapper.forecastWRFwrapper.prep_preprocess" title="wrf_wrap.fcst_wrapper.forecastWRFwrapper.prep_preprocess"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prep_preprocess</span></code></a>()</p></td>
+<td><p>Preparation for preprocessing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">prep_wrf</span></code>()</p></td>
+<td><p>Prepare for running WRF</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code>()</p></td>
+<td><p>Run WRF forecast</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_forcing_data</span></code>()</p></td>
+<td><p>Convert the forcing data-sets to WPS intermediate format</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">report_progress</span></code>(partial, total, status)</p></td>
+<td><p>Report model progress and status to scheduler</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>()</p></td>
+<td><p>Run the model-components</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_metgrid</span></code>()</p></td>
+<td><p>Run metgrid.exe in work-directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_ungrib</span></code>(data_set)</p></td>
+<td><p>Run ungrib.exe in work-directory</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_wrf</span></code>()</p></td>
+<td><p>Run WRF-model in work-directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_wrf_sim</span></code>()</p></td>
+<td><p>Initialise and run WRF-simulation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_cycle</span></code>(cycle_dt)</p></td>
+<td><p>Define which cycle to run</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.fcst_wrapper.forecastWRFwrapper.set_hotstart" title="wrf_wrap.fcst_wrapper.forecastWRFwrapper.set_hotstart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_hotstart</span></code></a>()</p></td>
+<td><p>Initiate hotstart</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_mpiexec</span></code>([ncores, hosts])</p></td>
+<td><p>Setup mpi command</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.fcst_wrapper.forecastWRFwrapper.set_timeinvariant" title="wrf_wrap.fcst_wrapper.forecastWRFwrapper.set_timeinvariant"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_timeinvariant</span></code></a>()</p></td>
+<td><p>Find the timestamp for time-invariant datasets</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_workdir</span></code>()</p></td>
+<td><p>Setup work-directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_workenv</span></code>()</p></td>
+<td><p>Setup work-environment</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">upload</span></code>()</p></td>
+<td><p>Upload output files to final destination.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">upload_logfiles</span></code>(files_list, suffix)</p></td>
+<td><p>Upload log files to log-directory.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.fcst_wrapper.forecastWRFwrapper.prep_preprocess">
+<span class="sig-name descname"><span class="pre">prep_preprocess</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.fcst_wrapper.forecastWRFwrapper.prep_preprocess" title="Permalink to this definition"></a></dt>
+<dd><p>Preparation for preprocessing.</p>
+<p>Expands default preparation in WRFwrapper to include:
+- time-invariant fields</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.fcst_wrapper.forecastWRFwrapper.set_hotstart">
+<span class="sig-name descname"><span class="pre">set_hotstart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.fcst_wrapper.forecastWRFwrapper.set_hotstart" title="Permalink to this definition"></a></dt>
+<dd><p>Initiate hotstart</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.fcst_wrapper.forecastWRFwrapper.set_timeinvariant">
+<span class="sig-name descname"><span class="pre">set_timeinvariant</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.fcst_wrapper.forecastWRFwrapper.set_timeinvariant" title="Permalink to this definition"></a></dt>
+<dd><p>Find the timestamp for time-invariant datasets</p>
+<p>Assume data available, for example SST, for cycle 00z only (unknown knowledge…)</p>
+<p>TODO: Alternative: set_sst –&gt; use timeinvariant or alternative dataset??</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-wrf_wrap.namelist">
+<span id="wrf-wrap-namelist-module"></span><h2>wrf_wrap.namelist module<a class="headerlink" href="#module-wrf_wrap.namelist" title="Permalink to this headline"></a></h2>
+<p>Module to support namelist-modification using WRFwrapper</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.namelist.set_times_namelist">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.namelist.</span></span><span class="sig-name descname"><span class="pre">set_times_namelist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.namelist.set_times_namelist" title="Permalink to this definition"></a></dt>
+<dd><p>Adjust times and max_dom in namelists</p>
+<p>If no specific times are provided than the start-end times for the nests are used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>wrapper</strong><span class="classifier">wrf_wrap.wrapper.WRFwrapper</span></dt><dd><p>WRFwrapper or child object</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str</span></dt><dd><p>Type of namelist: wps, wrf,</p>
+</dd>
+<dt><strong>start_time</strong><span class="classifier">datetime.datetime</span></dt><dd><p>Specify start-time</p>
+</dd>
+<dt><strong>end_time: datetime.datetime</strong></dt><dd><p>Specify end-time</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-wrf_wrap.utils">
+<span id="wrf-wrap-utils-module"></span><h2>wrf_wrap.utils module<a class="headerlink" href="#module-wrf_wrap.utils" title="Permalink to this headline"></a></h2>
+<p>Module with helper functions for WRF-wrapper</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.utils.get_list_input_files">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.utils.</span></span><span class="sig-name descname"><span class="pre">get_list_input_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.utils.get_list_input_files" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of required input-files for data_set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_set</strong><span class="classifier">dict</span></dt><dd><p>input-data dictionary with: basefile, start, end, increment</p>
+</dd>
+<dt><strong>cycle_dt</strong><span class="classifier">datetime.datetime</span></dt><dd><p>cycle timestamp</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ifile_list</strong><span class="classifier">list</span></dt><dd><p>list of input-file</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.utils.get_missing_files">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.utils.</span></span><span class="sig-name descname"><span class="pre">get_missing_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.utils.get_missing_files" title="Permalink to this definition"></a></dt>
+<dd><p>Check if all files in <cite>files_list</cite> exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>missing_files</strong><span class="classifier">list</span></dt><dd><p>List of missing files (empty list if no missing files)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.utils.get_progress">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.utils.</span></span><span class="sig-name descname"><span class="pre">get_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.utils.get_progress" title="Permalink to this definition"></a></dt>
+<dd><p>Determine progress wrt data_set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_set</strong><span class="classifier">dict</span></dt><dd><p>Dictionary containing start-end times, i.e. from nests, input_data, …</p>
+</dd>
+<dt><strong>cycle_dt</strong><span class="classifier">datetime.datetime</span></dt><dd><p>cycle timestamp</p>
+</dd>
+<dt><strong>timestamp</strong><span class="classifier">datetime.datetime</span></dt><dd><p>current timestamp of process</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="wrf_wrap.utils.get_timestamp_timeinvariant">
+<span class="sig-prename descclassname"><span class="pre">wrf_wrap.utils.</span></span><span class="sig-name descname"><span class="pre">get_timestamp_timeinvariant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycle_dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.utils.get_timestamp_timeinvariant" title="Permalink to this definition"></a></dt>
+<dd><p>Find the time-stamp for time-invariant file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_set</strong><span class="classifier">dict</span></dt><dd><p>input-data dictionary with: basefile, start, end, increment, age_limit</p>
+</dd>
+<dt><strong>cycle_dt</strong><span class="classifier">datetime.datetime</span></dt><dd><p>cycle timestamp</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>start</strong><span class="classifier">int</span></dt><dd><p>time stamp wrt cycle_dt for time-invariant file</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Namelist.wps start_date MUST match time-stamp in time-invariant data
+The base timestamp is derived from data_set[‘start’], i.e. ‘start’ = 0 will result in searching for 00z timestamps</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-wrf_wrap.wrapper">
+<span id="wrf-wrap-wrapper-module"></span><h2>wrf_wrap.wrapper module<a class="headerlink" href="#module-wrf_wrap.wrapper" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wrf_wrap.wrapper.</span></span><span class="sig-name descname"><span class="pre">WRFwrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nests</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#wrf_wrap.base.WRFbase" title="wrf_wrap.base.WRFbase"><code class="xref py py-class docutils literal notranslate"><span class="pre">wrf_wrap.base.WRFbase</span></code></a></p>
+<p>Class to run WRF modelling components.</p>
+<p>This class performs a standard WRF-simulation.</p>
+<p>Specific functionality can be implemented in child-classes.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.check_result" title="wrf_wrap.wrapper.WRFwrapper.check_result"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_result</span></code></a>(logfile, exec_id)</p></td>
+<td><p>Check for succesfull completion of process</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cleanup</span></code>()</p></td>
+<td><p>Remove work-directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.fetch_data_subset" title="wrf_wrap.wrapper.WRFwrapper.fetch_data_subset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fetch_data_subset</span></code></a>(data_set)</p></td>
+<td><p>Fetch data subset only.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.get_input_data_filelist" title="wrf_wrap.wrapper.WRFwrapper.get_input_data_filelist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_input_data_filelist</span></code></a>()</p></td>
+<td><p>Find file-lists for all requested input-data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.get_wrf_progress" title="wrf_wrap.wrapper.WRFwrapper.get_wrf_progress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_wrf_progress</span></code></a>(line)</p></td>
+<td><p>Determine WRF-progress</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.init_wrf" title="wrf_wrap.wrapper.WRFwrapper.init_wrf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_wrf</span></code></a>()</p></td>
+<td><p>Initialise WRF-model simulation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.mod_namelist_metgrid" title="wrf_wrap.wrapper.WRFwrapper.mod_namelist_metgrid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mod_namelist_metgrid</span></code></a>()</p></td>
+<td><p>Modify namelist.wps for metgrid</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.mod_namelist_ungrib" title="wrf_wrap.wrapper.WRFwrapper.mod_namelist_ungrib"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mod_namelist_ungrib</span></code></a>(data_set)</p></td>
+<td><p>Modify namelist.wps for ungrib.exe for data_set</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">post_mortem_upload</span></code>()</p></td>
+<td><p>Upload content of work-directory to flush-directory.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.post_process" title="wrf_wrap.wrapper.WRFwrapper.post_process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">post_process</span></code></a>()</p></td>
+<td><p>Run post-processing on WRF-output files</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.pre_process" title="wrf_wrap.wrapper.WRFwrapper.pre_process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pre_process</span></code></a>()</p></td>
+<td><p>Pre-process input data for WRF-modelling</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.prep_preprocess" title="wrf_wrap.wrapper.WRFwrapper.prep_preprocess"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prep_preprocess</span></code></a>()</p></td>
+<td><p>Prepare for pre-processing</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.prep_wrf" title="wrf_wrap.wrapper.WRFwrapper.prep_wrf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prep_wrf</span></code></a>()</p></td>
+<td><p>Prepare for running WRF</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.process" title="wrf_wrap.wrapper.WRFwrapper.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>()</p></td>
+<td><p>Run WRF forecast</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.process_forcing_data" title="wrf_wrap.wrapper.WRFwrapper.process_forcing_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_forcing_data</span></code></a>()</p></td>
+<td><p>Convert the forcing data-sets to WPS intermediate format</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">report_progress</span></code>(partial, total, status)</p></td>
+<td><p>Report model progress and status to scheduler</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>()</p></td>
+<td><p>Run the model-components</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.run_metgrid" title="wrf_wrap.wrapper.WRFwrapper.run_metgrid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_metgrid</span></code></a>()</p></td>
+<td><p>Run metgrid.exe in work-directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.run_ungrib" title="wrf_wrap.wrapper.WRFwrapper.run_ungrib"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_ungrib</span></code></a>(data_set)</p></td>
+<td><p>Run ungrib.exe in work-directory</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.run_wrf" title="wrf_wrap.wrapper.WRFwrapper.run_wrf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_wrf</span></code></a>()</p></td>
+<td><p>Run WRF-model in work-directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#wrf_wrap.wrapper.WRFwrapper.run_wrf_sim" title="wrf_wrap.wrapper.WRFwrapper.run_wrf_sim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_wrf_sim</span></code></a>()</p></td>
+<td><p>Initialise and run WRF-simulation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_cycle</span></code>(cycle_dt)</p></td>
+<td><p>Define which cycle to run</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_mpiexec</span></code>([ncores, hosts])</p></td>
+<td><p>Setup mpi command</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_workdir</span></code>()</p></td>
+<td><p>Setup work-directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_workenv</span></code>()</p></td>
+<td><p>Setup work-environment</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">upload</span></code>()</p></td>
+<td><p>Upload output files to final destination.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">upload_logfiles</span></code>(files_list, suffix)</p></td>
+<td><p>Upload log files to log-directory.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.check_result">
+<span class="sig-name descname"><span class="pre">check_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exec_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.check_result" title="Permalink to this definition"></a></dt>
+<dd><p>Check for succesfull completion of process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>logfile</strong><span class="classifier">file</span></dt><dd><p>Log file from process</p>
+</dd>
+<dt><strong>exec_id</strong><span class="classifier">str</span></dt><dd><p>Reference to process</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.fetch_data_subset">
+<span class="sig-name descname"><span class="pre">fetch_data_subset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.fetch_data_subset" title="Permalink to this definition"></a></dt>
+<dd><p>Fetch data subset only.</p>
+<p>Subsetting input-data by variables and/or regional selection.</p>
+<p class="rubric">Notes</p>
+<p>Sub-setting is only available for some Vtables (see: wrf-wrap/utils/)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.get_input_data_filelist">
+<span class="sig-name descname"><span class="pre">get_input_data_filelist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.get_input_data_filelist" title="Permalink to this definition"></a></dt>
+<dd><p>Find file-lists for all requested input-data</p>
+<p>File-lists for datasets are only stored if the data is available.
+If data is unavailable sys.exit(). 
+TODO: scanner??</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.get_wrf_progress">
+<span class="sig-name descname"><span class="pre">get_wrf_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.get_wrf_progress" title="Permalink to this definition"></a></dt>
+<dd><p>Determine WRF-progress</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>line</strong><span class="classifier">str</span></dt><dd><p>line from WRF logfile</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.init_wrf">
+<span class="sig-name descname"><span class="pre">init_wrf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.init_wrf" title="Permalink to this definition"></a></dt>
+<dd><p>Initialise WRF-model simulation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.mod_namelist_metgrid">
+<span class="sig-name descname"><span class="pre">mod_namelist_metgrid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.mod_namelist_metgrid" title="Permalink to this definition"></a></dt>
+<dd><p>Modify namelist.wps for metgrid</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.mod_namelist_ungrib">
+<span class="sig-name descname"><span class="pre">mod_namelist_ungrib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.mod_namelist_ungrib" title="Permalink to this definition"></a></dt>
+<dd><p>Modify namelist.wps for ungrib.exe for data_set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_set</strong><span class="classifier">str</span></dt><dd><p>Type of forcing data: meteo, sst, sfc, …</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.post_process">
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.post_process" title="Permalink to this definition"></a></dt>
+<dd><p>Run post-processing on WRF-output files</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.pre_process">
+<span class="sig-name descname"><span class="pre">pre_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.pre_process" title="Permalink to this definition"></a></dt>
+<dd><p>Pre-process input data for WRF-modelling</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.prep_preprocess">
+<span class="sig-name descname"><span class="pre">prep_preprocess</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.prep_preprocess" title="Permalink to this definition"></a></dt>
+<dd><p>Prepare for pre-processing</p>
+<p>Populate work directory with WPS-executables and static-files.
+Check if input-data is available.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.prep_wrf">
+<span class="sig-name descname"><span class="pre">prep_wrf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.prep_wrf" title="Permalink to this definition"></a></dt>
+<dd><p>Prepare for running WRF</p>
+<p>Populate work directory with WRF-executables and set times/nests in namelist.input.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.process" title="Permalink to this definition"></a></dt>
+<dd><p>Run WRF forecast</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.process_forcing_data">
+<span class="sig-name descname"><span class="pre">process_forcing_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.process_forcing_data" title="Permalink to this definition"></a></dt>
+<dd><p>Convert the forcing data-sets to WPS intermediate format</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.run_metgrid">
+<span class="sig-name descname"><span class="pre">run_metgrid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.run_metgrid" title="Permalink to this definition"></a></dt>
+<dd><p>Run metgrid.exe in work-directory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.run_ungrib">
+<span class="sig-name descname"><span class="pre">run_ungrib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.run_ungrib" title="Permalink to this definition"></a></dt>
+<dd><p>Run ungrib.exe in work-directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data_set</strong><span class="classifier">str</span></dt><dd><p>identifier for input-dataset</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>ungrib code is NOT parallellized</p></li>
+<li><p>ungrid runs several passes over the input-data</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.run_wrf">
+<span class="sig-name descname"><span class="pre">run_wrf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.run_wrf" title="Permalink to this definition"></a></dt>
+<dd><p>Run WRF-model in work-directory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="wrf_wrap.wrapper.WRFwrapper.run_wrf_sim">
+<span class="sig-name descname"><span class="pre">run_wrf_sim</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#wrf_wrap.wrapper.WRFwrapper.run_wrf_sim" title="Permalink to this definition"></a></dt>
+<dd><p>Initialise and run WRF-simulation</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-wrf_wrap">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-wrf_wrap" title="Permalink to this headline"></a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tests.html" class="btn btn-neutral float-left" title="tests package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, MetOcean Solutions.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

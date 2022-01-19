@@ -1,0 +1,29 @@
+tests package
+=============
+
+Submodules
+----------
+
+tests.test\_base module
+-----------------------
+
+.. automodule:: tests.test_base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tests.test\_wrapper module
+--------------------------
+
+.. automodule:: tests.test_wrapper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
